@@ -1,5 +1,4 @@
 import React from "react";
-// Import necessary components from recharts library
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 // Define the type for the data prop
