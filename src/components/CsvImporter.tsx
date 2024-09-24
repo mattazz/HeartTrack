@@ -3,21 +3,20 @@ import { useCSVReader } from 'react-papaparse';
 import DownloadCSVButton from './DownloadCsvButton';
 import HeartChart from './HeartChart';
 
-function CsvImporter() {
+function CsvImporter({setData}) {
     //Data to store csv import
-    const [data, setData] = useState([]);
     const { CSVReader } = useCSVReader(); //using react-papaparse library
 
     function parseCSVData(csvData) {
         // extract the headers = csvData[0] = ["Date", "Weight"]
         const headers = csvData[0]; 
-
+    
         // [
         //     ["2023-01-01", "70"],
         //     ["2023-01-02", "71"],
         //     ["2023-01-03", "69"]
         // ]
-
+    
         const csvRows = csvData.slice(1).map(row => { //slicing it to exclude the headers which is csvData[0]
             const obj = {};
             headers.forEach((header, index) => {
@@ -25,7 +24,7 @@ function CsvImporter() {
             });
             return obj;
         });
-
+    
         // will return an array of objects
         // const csvRows = [
         // {Date: "2023-01-01", Weight: "70"}
@@ -34,6 +33,7 @@ function CsvImporter() {
         // ]
         return csvRows;
     }
+    
 
     return (
         <div>
@@ -44,8 +44,7 @@ function CsvImporter() {
                     //parses the data and returns the correct format
                     const parsedData = parseCSVData(result);
 
-                    console.log(`Parsed Data: ${JSON.stringify(parsedData)}`);
-
+                    // console.log(`Parsed Data: ${JSON.stringify(parsedData)}`);
                     //stores data in 'data' variable
                     setData(parsedData);
                 }}
@@ -63,10 +62,6 @@ function CsvImporter() {
                     </>
                 )}
             </CSVReader>
-
-            {/* Pushes the data into the following components: */}
-            <DownloadCSVButton data={data} />
-            <HeartChart data={data} />
         </div>
     );
 }
