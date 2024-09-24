@@ -1,6 +1,6 @@
 import { useState } from "react"
-import CSVImporter from "./CsvImporter"
-import HeartChart from "./HeartChart"
+import CSVImporter from "./components/CsvImporter"
+import HeartChart from "./components/HeartChart"
 
 function App() {
   const [data, setData] =useState([]);
@@ -10,7 +10,6 @@ function App() {
       <div>
         <h1>Heart Track</h1>
         <CSVImporter setData={setData} data={data} />
-        <HeartChart data={data} />
       </div>
     </>
   )
