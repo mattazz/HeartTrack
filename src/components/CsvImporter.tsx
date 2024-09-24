@@ -39,9 +39,14 @@ function CsvImporter() {
         <div>
             <CSVReader
                 onUploadAccepted={(results) => {
+                    //get only the data
                     const result = results.data;
+                    //parses the data and returns the correct format
                     const parsedData = parseCSVData(result);
+
                     console.log(`Parsed Data: ${JSON.stringify(parsedData)}`);
+
+                    //stores data in 'data' variable
                     setData(parsedData);
                 }}
             >
@@ -58,6 +63,8 @@ function CsvImporter() {
                     </>
                 )}
             </CSVReader>
+
+            {/* Pushes the data into the following components: */}
             <DownloadCSVButton data={data} />
             <HeartChart data={data} />
         </div>
