@@ -5,6 +5,8 @@ import DownloadCSVButton from "./components/DownloadCsvButton";
 import HeartChart from "./components/HeartChart";
 import BioForm from "./components/BioForm";
 
+import './styles.css'
+
 function App() {
   const [data, setData] =useState([]);
 
@@ -26,7 +28,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Heart Track</h1>
+        <h1 id="main-title">Heart Track</h1>
         <CSVImporter setData={setData} />
 
         {/* Pushes the data into the following components when data is available*/}

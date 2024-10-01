@@ -37,31 +37,33 @@ function CsvImporter({setData}) {
 
     return (
         <div>
-            <CSVReader
-                onUploadAccepted={(results) => {
-                    //get only the data
-                    const result = results.data;
-                    //parses the data and returns the correct format
-                    const parsedData = parseCSVData(result);
+            <div id='csv-reader'>
+                <CSVReader
+                    onUploadAccepted={(results) => {
+                        //get only the data
+                        const result = results.data;
+                        //parses the data and returns the correct format
+                        const parsedData = parseCSVData(result);
 
-                    // console.log(`Parsed Data: ${JSON.stringify(parsedData)}`);
-                    //stores data in 'data' variable
-                    setData(parsedData);
-                }}
-            >
-                {({ getRootProps, acceptedFile, getRemoveFileProps }) => (
-                    <>
-                        <div {...getRootProps()} style={{ border: '1px dashed gray', padding: '10px', cursor: 'pointer' }}>
-                            {acceptedFile ? acceptedFile.name : 'Click to upload CSV'}
-                        </div>
-                        {acceptedFile && (
-                            <button {...getRemoveFileProps()} style={{ marginTop: '10px' }}>
-                                Remove
-                            </button>
-                        )}
-                    </>
-                )}
-            </CSVReader>
+                        // console.log(`Parsed Data: ${JSON.stringify(parsedData)}`);
+                        //stores data in 'data' variable
+                        setData(parsedData);
+                    }}
+                >
+                    {({ getRootProps, acceptedFile, getRemoveFileProps }) => (
+                        <>
+                            <div {...getRootProps()} style={{ border: '1px dashed gray', padding: '10px', cursor: 'pointer' }}>
+                                {acceptedFile ? acceptedFile.name : 'Click to upload CSV'}
+                            </div>
+                            {acceptedFile && (
+                                <button {...getRemoveFileProps()} style={{ marginTop: '10px' }}>
+                                    Remove
+                                </button>
+                            )}
+                        </>
+                    )}
+                </CSVReader>
+            </div>
         </div>
     );
 }

@@ -1,0 +1,19 @@
+body{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#main-title{
+  text-align: center;
+  color: rgb(234, 28, 28);
+}
+
+#csv-reader{
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+#csv-reader:hover{
+  transition: 2s all;
+  background-color: rgb(255, 209, 209);
+}
