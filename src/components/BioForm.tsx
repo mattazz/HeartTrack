@@ -5,7 +5,7 @@ function BioForm({handleNewDataRow}){
     const today = new Date().toISOString().split('T')[0]
     
     return(
-        <div>
+        <div className="container d-flex justify-content-center align-items-center border flex-column text-center">
             <h1>Add Data</h1>
             <form action="" onSubmit={handleNewDataRow}>
                 <label htmlFor="weight">Weight: </label>

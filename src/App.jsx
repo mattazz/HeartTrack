@@ -4,6 +4,7 @@ import CSVImporter from "./components/CsvImporter"
 import DownloadCSVButton from "./components/DownloadCsvButton";
 import HeartChart from "./components/HeartChart";
 import BioForm from "./components/BioForm";
+import DataEntries from "./components/DataEntries";
 
 import './styles.css'
 
@@ -28,7 +29,7 @@ function App() {
   return (
     <>
       <div>
-        <h1 id="main-title">Heart Track</h1>
+        <h1 id="main-title" >Heart Track</h1>
         <CSVImporter setData={setData} />
 
         {/* Pushes the data into the following components when data is available*/}
@@ -41,14 +42,8 @@ function App() {
 
         <BioForm handleNewDataRow={handleNewDataRow} />
 
-        <div>
-          <h2>Data Entries</h2>
-          <ul>
-            {data.map((entry, index) => (
-              <li key={index}>{`Weight: ${entry.Weight}, Date: ${entry.Date}`}</li>
-            ))}
-          </ul>
-        </div>
+        <DataEntries data={data} /> {/* Use the new component */}
+
 
       </div>
     </>
