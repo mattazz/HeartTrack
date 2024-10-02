@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 // Define the type for the data prop
@@ -14,8 +14,19 @@ export default function HeartChart({ data }: HeartChartProps) {
     const [windowWidth, setWindowWidth] = useState(window.innerHeight)
     const windowWidthMargin = 0.8
 
+    const [maxYValue, setMaxYValue] = useState(0);
+
     //to constantly resize
     useEffect(() => {
+
+        // for updating max Y-Axis value
+        if (data.length > 0){
+            const maxWeight = Math.max(...data.map(entry => entry.Weight))
+            setMaxYValue(maxWeight + 10); //10 is padding
+            console.log(maxYValue);
+            
+        }
+
         function handleResize(){
             setWindowWidth(window.innerWidth)
         };
@@ -25,7 +36,7 @@ export default function HeartChart({ data }: HeartChartProps) {
         return () =>{
             window.removeEventListener('resize', handleResize)
         }
-    }, []);
+    }, [data]);
 
     const tickFormatter = (tick: string, index: number) =>{
         if (index % 14 === 0){
@@ -42,7 +53,7 @@ export default function HeartChart({ data }: HeartChartProps) {
             {/* Add an X-axis with Date as the data key */}
             <XAxis dataKey="Date" tickFormatter={tickFormatter}  />
             {/* Add a Y-axis */}
-            <YAxis />
+            <YAxis domain={[0, maxYValue]}/>
             {/* Add a tooltip to show data on hover */}
             <Tooltip />
             {/* Add a legend to describe the data */}

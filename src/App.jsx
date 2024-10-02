@@ -44,7 +44,8 @@ function App() {
         <BioForm handleNewDataRow={handleNewDataRow} />
 
         <div className="d-flex ms-4">
-        <DataEntries data={data} /> 
+          {data.length > 0 ? <DataEntries data={data} />: null }
+        
         </div>
 
 

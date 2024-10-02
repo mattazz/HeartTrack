@@ -6,7 +6,7 @@ function DataEntries({ data }) {
     <h2>Data Entries</h2>
     <div className="row">
       {data.map((entry, index) => (
-        <div key={index} className="col-md-4 mb-2">
+        <div key={index} className="col-md-2 mb-2">
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">{entry.Date}</h5>
