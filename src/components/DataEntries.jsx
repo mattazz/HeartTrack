@@ -3,14 +3,21 @@
 function DataEntries({ data }) {
   return (
     <div className="mt-4">
-      <h2>Data Entries</h2>
-      <ul className="list-group">
-        {data.map((entry, index) => (
-          <li key={index} className="list-group-item">{`Weight: ${entry.Weight}, Date: ${entry.Date}`}</li>
-        ))}
-      </ul>
+    <h2>Data Entries</h2>
+    <div className="row">
+      {data.map((entry, index) => (
+        <div key={index} className="col-md-4 mb-2">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{entry.Date}</h5>
+              <p className="card-text">{`Weight: ${entry.Weight}`}</p>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 }
 
 DataEntries.propTypes = {
