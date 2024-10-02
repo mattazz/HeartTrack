@@ -30,6 +30,7 @@ function App() {
     <>
       <div>
         <h1 id="main-title" >Heart Track</h1>
+        <p className="text-center fst-italic text-dark mb-5" >Note: To preserve your data, download the CSV file after updating and re-upload it when needed.</p>
         <CSVImporter setData={setData} />
 
         {/* Pushes the data into the following components when data is available*/}
@@ -42,7 +43,9 @@ function App() {
 
         <BioForm handleNewDataRow={handleNewDataRow} />
 
-        <DataEntries data={data} /> {/* Use the new component */}
+        <div className="d-flex ms-4">
+        <DataEntries data={data} /> 
+        </div>
 
 
       </div>
