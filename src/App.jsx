@@ -32,8 +32,12 @@ function App() {
         <CSVImporter setData={setData} />
 
         {/* Pushes the data into the following components when data is available*/}
-        {data.length > 0 ? <DownloadCSVButton data={data}/>:null}
-        {data.length > 0 ? <HeartChart data={data} />: null}
+        {data.length > 0 ? <div className="center"><DownloadCSVButton data={data}/> </div>:null}
+        {data.length > 0 ? (
+          <div id="heartChart">
+          <HeartChart data={data} />
+          </div>
+          ): null}
 
         <BioForm handleNewDataRow={handleNewDataRow} />
 

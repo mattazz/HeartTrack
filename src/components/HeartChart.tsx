@@ -12,7 +12,7 @@ export default function HeartChart({ data }: HeartChartProps) {
     console.log(`HeartChart data prop: ${JSON.stringify(data)}`);
 
     const [windowWidth, setWindowWidth] = useState(window.innerHeight)
-    const windowWidthMargin = 0.6
+    const windowWidthMargin = 0.8
 
     //to constantly resize
     useEffect(() => {
@@ -36,11 +36,11 @@ export default function HeartChart({ data }: HeartChartProps) {
 
     return (
         // Create a LineChart with specified width, height, and data
-        <LineChart width={windowWidth * windowWidthMargin} height={300} data={data}>
+        <LineChart width={windowWidth * windowWidthMargin} height={300} data={data} >
             {/* Add a Cartesian grid with dashed lines */}
             <CartesianGrid strokeDasharray="3 3" />
             {/* Add an X-axis with Date as the data key */}
-            <XAxis dataKey="Date" tickFormatter={tickFormatter} />
+            <XAxis dataKey="Date" tickFormatter={tickFormatter}  />
             {/* Add a Y-axis */}
             <YAxis />
             {/* Add a tooltip to show data on hover */}
