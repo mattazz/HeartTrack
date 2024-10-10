@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 
 function Signup() {
 
+    const {register, handleSubmit, watch, formState: {errors},} = useForm()
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -13,8 +15,7 @@ function Signup() {
 
     const [validationMessge, setValidationMessage] = useState('')
 
-    function handleSubmit() {
-        event.preventDefault()
+    function onSubmit() {
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -39,7 +40,8 @@ function Signup() {
             <Navbar />
             <h1>Sign up</h1>
 
-            <div onSubmit={handleSubmit} className="flex" id="signup-container">
+            {/* NOTE THIS IS WHERE I ENDED  */}
+            <div onSubmit={handleSubmit(onSubmit)} className="flex" id="signup-container">
                 <form>
                     <div className="form-flex-row">
                         <label htmlFor="first-name"></label>
