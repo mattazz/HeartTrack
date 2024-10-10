@@ -7,5 +7,9 @@ A simple bio tracking static website that allows the user to import CSV data, vi
   - [ ] Systolic data
   - [ ] Note (custom text field)
 
+## To do SIGNUP 
+- [ ] Consider using Formik for forms and rewrite code
+- [ ] No input validation ^ use formik
+
 ## Long-term To do
 - [ ] Transition to database
