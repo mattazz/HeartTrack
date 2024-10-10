@@ -6,7 +6,8 @@ import HeartChart from "./components/HeartChart";
 import BioForm from "./components/BioForm";
 import DataEntries from "./components/DataEntries";
 
-import './styles.css'
+import Navbar from "./Navbar";
+
 
 function App() {
   const [data, setData] =useState([]);
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
       <div>
+        <Navbar />
         <h1 id="main-title" >Heart Track</h1>
         <p className="text-center fst-italic text-dark mb-5" >Note: To preserve your data, download the CSV file after updating and re-upload it when needed.</p>
         <CSVImporter setData={setData} />

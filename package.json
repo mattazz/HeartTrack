@@ -12,7 +12,7 @@
     "deploy": "gh-pages -d dist",
     "start": "nodemon serve/index.js",
     "build:local": "vite build --mode development",
-    "build:prod":"vite build --mode production"
+    "build:prod": "vite build --mode production"
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
@@ -20,6 +20,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-papaparse": "^4.4.0",
+    "react-router-dom": "^6.26.2",
     "recharts": "^2.12.7"
   },
   "devDependencies": {
