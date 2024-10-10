@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Navbar from "./Navbar"
+import { useForm } from "react-hook-form";
 
 
 function Signup() {
@@ -10,7 +11,10 @@ function Signup() {
     const [lastName, setLastName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [validationMessge, setValidationMessage] = useState('')
+
     function handleSubmit() {
+        event.preventDefault()
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -25,6 +29,8 @@ function Signup() {
             .catch((error) => {
                 console.error('POST user signup Error:', error);
             });
+
+        setValidationMessage('Success!')
     }
 
 
@@ -55,8 +61,10 @@ function Signup() {
                     </div>
 
                     <button type="submit"> Submit </button>
-
                 </form>
+            </div>
+            <div>
+            <p id="validation-message">{validationMessge}</p>
             </div>
         </>
     )
