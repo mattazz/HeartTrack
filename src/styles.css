@@ -7,6 +7,35 @@ body{
   color: rgb(234, 28, 28);
 }
 
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-flex-col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-flex-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#signup-container{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 50%;
+  margin: auto;
+}
+
+
 #main-nav{
 
   border: 1px solid red;
@@ -54,9 +83,9 @@ body{
   justify-content: center;
 }
 
+
 button {
   margin: 10px;
-  /* Add Bootstrap button classes */
   display: inline-block;
   font-weight: 400;
   color: white;

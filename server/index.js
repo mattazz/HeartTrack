@@ -25,6 +25,7 @@ console.log(`__dirname = ${__dirname}`);
 // Serve static files from the react app
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
+app.use(express.json())
 app.use(cors());
 
 // API endpoint
@@ -35,10 +36,21 @@ app.get('/api/hello', (req, res) => {
 // Serve the React app for any other route
 app.get('*', (req, res) => {
     const filePath = path.join(__dirname, '..', 'dist', 'index.html');
-    console.log(`filePath = ${filePath}`);
-    
+    // console.log(`filePath = ${filePath}`);
     res.sendFile(filePath);
 });
+
+app.post('/login', (req, res) =>{
+    const {username, password} = req.body
+    console.log(username, password);
+    res.json({message: "Login reached."})
+})
+
+app.post('/signup', (req, res) =>{
+    const {firstName, lastName, username, password} = req.body
+    console.log(`user sign up: ${firstName} ${lastName} | U:${username} P:${password}`);
+    res.json({message: "Sign up success"})
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

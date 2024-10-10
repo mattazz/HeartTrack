@@ -10,9 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "start": "nodemon serve/index.js",
+    "start": "nodemon server/index.js",
     "build:local": "vite build --mode development",
-    "build:prod": "vite build --mode production"
+    "build:prod": "vite build --mode production",
+    "build-start": "vite build && nodemon server/index.js"
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
