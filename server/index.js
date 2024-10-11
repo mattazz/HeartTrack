@@ -47,9 +47,16 @@ app.post('/login', (req, res) =>{
 })
 
 app.post('/signup', (req, res) =>{
-    const {firstName, lastName, username, password} = req.body
-    console.log(`user sign up: ${firstName} ${lastName} | U:${username} P:${password}`);
-    res.json({message: "Sign up success"})
+    const {
+        'first-name': firstName,
+        'last-name': lastName,
+        username,
+        password,
+        'confirm-password':confirmPassword
+    } = req.body
+
+    console.log(`User sign up: ${firstName} ${lastName} | U: ${username} P:${password}, CP:${confirmPassword}`);
+    
 })
 
 app.listen(port, () => {
