@@ -30,7 +30,7 @@ function Signup() {
   return (
     <>
       <Navbar />
-      <h1>Sign up</h1>
+      <h1 className='center'>Sign up</h1>
 
       <div className="flex" id="signup-container">
         <form className="form-flex" onSubmit={handleSubmit(onSubmit)}>
@@ -84,8 +84,8 @@ function Signup() {
 
           <button type="submit">Submit</button>
         </form>
-        {validationMessage && <div>{validationMessage}</div>}
       </div>
+        {validationMessage && <div className='center red'>{validationMessage}</div>}
     </>
   );
 }

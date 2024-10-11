@@ -7,6 +7,14 @@ body{
   color: rgb(234, 28, 28);
 }
 
+.red{
+  color: red;
+}
+
+.green{
+  color: green;
+}
+
 .flex{
   display: flex;
   justify-content: center;
