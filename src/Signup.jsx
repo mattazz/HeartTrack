@@ -1,76 +1,93 @@
-import { useState } from "react"
-import Navbar from "./Navbar"
-import { useForm } from "react-hook-form";
-
+import { useState } from 'react';
+import Navbar from './Navbar';
+import { useForm } from 'react-hook-form';
 
 function Signup() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const [validationMessage, setValidationMessage] = useState('');
 
-    const {register, handleSubmit, watch, formState: {errors},} = useForm()
+  const onSubmit = (data) => {
+    console.log('Form Data:', data); // Log form data to the console
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('POST user signup Success:', data);
+        setValidationMessage('Success!');
+      })
+      .catch((error) => {
+        console.error('POST user signup Error:', error);
+        setValidationMessage('Error occurred!');
+      });
+  };
 
-    const [validationMessge, setValidationMessage] = useState('')
+  return (
+    <>
+      <Navbar />
+      <h1>Sign up</h1>
 
-    function onSubmit() {
-        fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ firstName, lastName, username, password, confirmPassword }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('POST user signup Success:', data);
-            })
-            .catch((error) => {
-                console.error('POST user signup Error:', error);
-            });
+      <div className="flex" id="signup-container">
+        <form className="form-flex" onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="first-name">First Name:</label>
+          <input
+            type="text"
+            id="first-name"
+            {...register('first-name', { required: 'First name is required' })}
+            placeholder="First name"
+          />
+          {errors['first-name'] && <div>{errors['first-name'].message}</div>}
 
-        setValidationMessage('Success!')
-    }
+          <label htmlFor="last-name">Last Name:</label>
+          <input
+            type="text"
+            id="last-name"
+            {...register('last-name', { required: 'Last name is required' })}
+            placeholder="Last name"
+          />
+          {errors['last-name'] && <div>{errors['last-name'].message}</div>}
 
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            {...register('username', { required: 'Username is required', minLength: { value: 4, message: 'Username must be at least 4 characters' } })}
+            placeholder="username"
+          />
+          {errors.username && <div>{errors.username.message}</div>}
 
-    return (
-        <>
-            <Navbar />
-            <h1>Sign up</h1>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
+            placeholder="password"
+          />
+          {errors.password && <div>{errors.password.message}</div>}
 
-            {/* NOTE THIS IS WHERE I ENDED  */}
-            <div onSubmit={handleSubmit(onSubmit)} className="flex" id="signup-container">
-                <form>
-                    <div className="form-flex-row">
-                        <label htmlFor="first-name"></label>
-                        <input type="name" name="first-name" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          <label htmlFor="confirm-password">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            {...register('confirm-password', {
+              required: 'Confirm password is required',
+              validate: value => value === watch('password') || 'Passwords do not match'
+            })}
+            placeholder="Confirm password"
+          />
+          {errors['confirm-password'] && <div>{errors['confirm-password'].message}</div>}
 
-                        <label htmlFor="last-name"></label>
-                        <input type="name" name="last-name" placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                    </div>
-
-                    <div className="form-flex-col">
-                        <label htmlFor="username"></label>
-                        <input type="text" name="username" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-
-                        <label htmlFor="password"></label>
-                        <input type="password" name="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-                        <label htmlFor="confirm-password"></label>
-                        <input type="password" name="confirm-password" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                    </div>
-
-                    <button type="submit"> Submit </button>
-                </form>
-            </div>
-            <div>
-            <p id="validation-message">{validationMessge}</p>
-            </div>
-        </>
-    )
+          <button type="submit">Submit</button>
+        </form>
+        {validationMessage && <div>{validationMessage}</div>}
+      </div>
+    </>
+  );
 }
 
-
-export default Signup
+export default Signup;
